@@ -19,7 +19,6 @@ public class SelectGenerator : MonoBehaviour
     public GameObject tutorialPanel;
     public GameObject restartPanel;
     public GameObject settingPanel;
-    // Use this for initialization
     public GameObject mB;//マイページ移行のボタン
     public GameObject sB;//スタディ
     public GameObject dB;//ディクショナリ(用語集)
@@ -44,7 +43,7 @@ public class SelectGenerator : MonoBehaviour
     public GameObject creditPanel;
     public GameObject tCObj;
     public GameObject dicConOb;
-    public GameObject aCObj; 
+    public GameObject aCObj;
 
     public Image fadeimage;
     public GameObject backimage_B;
@@ -54,8 +53,6 @@ public class SelectGenerator : MonoBehaviour
 
     public Text helpTitle;
     public Text helpText;
-    //GameObject pSdobj;
-
     private Vector2 mBls;
     private Vector2 sBls;
     private Vector2 dBls;
@@ -67,12 +64,10 @@ public class SelectGenerator : MonoBehaviour
     private float fc = 0.0f;
     private float bc = 0.01f;
 
-    DictionaryController dicCon;
     TutorialController tC;
     AudioController aC;
 
     Color alpha;
-    //PlayerScoreDirector pSd;
     enum mode : int
     {
         MYPAGE,
@@ -84,10 +79,9 @@ public class SelectGenerator : MonoBehaviour
     void Start()
     {
         aC = aCObj.GetComponent<AudioController>();
-        dicCon = dicConOb.GetComponent<DictionaryController>();
         selectbackimageCheck(PlayerScoreDirector.selectbackNum);
         isFade = false;
-        fadeimage.color = new Color(0, 0, 0,fc);
+        fadeimage.color = new Color(0, 0, 0, fc);
         fadeimage.gameObject.SetActive(false);
         this.myPage = GameObject.Find("MypagePanel");
         this.studyMode = GameObject.Find("StudyPanel");
@@ -98,10 +92,8 @@ public class SelectGenerator : MonoBehaviour
         this.s_sPanel = GameObject.Find("S_sPanel");
         this.s_rPanel = GameObject.Find("S_rPanel");
         this.s_cPanel = GameObject.Find("S_cPanel");
-        //this.pSdobj = GameObject.Find("PlayerScoreDirector");
         changeWord(1);
         PlayerScoreDirector.numOfs_Mode = 0;
-        //pSd = pSdobj.GetComponent<PlayerScoreDirector>();
         studybacknumCheck(PlayerScoreDirector.studybackNum);
         fontnumCheck();
         this.backCanvas.SetActive(false);
@@ -116,10 +108,11 @@ public class SelectGenerator : MonoBehaviour
         tC = tCObj.GetComponent<TutorialController>();
 
         //初回起動かどうかの判別
-        if(PlayerScoreDirector.isPlay == 0)
+        if (PlayerScoreDirector.isPlay == 0)
         {
             panelCalling(0);
-        }else
+        }
+        else
         {
             panelCalling(1);
         }
@@ -134,12 +127,13 @@ public class SelectGenerator : MonoBehaviour
             daialogOn();
         }
 
-        if(isFade == true) { 
+        if (isFade == true)
+        {
             fc += bc;
             fadeimage.color = new Color(0, 0, 0, fc);
         }
         if (fc >= 1.0f)
-        SceneManager.LoadScene("StudyScene");
+            SceneManager.LoadScene("StudyScene");
     }
 
     public void mypageMove()
@@ -204,9 +198,10 @@ public class SelectGenerator : MonoBehaviour
     /// 
     public void r_sceneMove(int qValue)
     {
-        if(qValue == 1) { 
-        PlayerScoreDirector.numOfs_Mode = 4;
-        PlayerScoreDirector.numOfQuestion = 21.0f;
+        if (qValue == 1)
+        {
+            PlayerScoreDirector.numOfs_Mode = 4;
+            PlayerScoreDirector.numOfQuestion = 21.0f;
             fadeoutScene();
         }
         else if (qValue == 2)
@@ -317,8 +312,9 @@ public class SelectGenerator : MonoBehaviour
         {
             TutorialController.iNum = 1;
             tC.imageChange(1);
-           tutorialPanel.SetActive(true);
-        }else if (mN == 1)
+            tutorialPanel.SetActive(true);
+        }
+        else if (mN == 1)
         {
             myPage.SetActive(true);
             this.h_MypageImage.SetActive(true);
@@ -393,7 +389,7 @@ public class SelectGenerator : MonoBehaviour
 
         studybacknumCheck(PlayerScoreDirector.studybackNum);
         fontnumCheck();
-        
+
         this.endMessage.SetActive(true);
     }
     /// <summary>
@@ -479,14 +475,15 @@ public class SelectGenerator : MonoBehaviour
     /// モードの変更
     /// </summary>
     /// <param name="cNum"></param>
-    public void changeWord(int cNum) {
+    public void changeWord(int cNum)
+    {
 
-        if(cNum == 1)
+        if (cNum == 1)
         {
             this.aiueoView.SetActive(true);
             this.abcdeView.SetActive(false);
         }
-        else if(cNum == 2)
+        else if (cNum == 2)
         {
             this.aiueoView.SetActive(false);
             this.abcdeView.SetActive(true);
@@ -548,7 +545,8 @@ public class SelectGenerator : MonoBehaviour
     public void skipbuttonPush()
     {
         panelCalling(1);
-        if(PlayerScoreDirector.isPlay == 0) { 
+        if (PlayerScoreDirector.isPlay == 0)
+        {
             PlayerScoreDirector.isPlay = 1;
             PlayerPrefs.SetInt(PlayerScoreDirector.isP, PlayerScoreDirector.isPlay);
             PlayerPrefs.Save();
@@ -580,16 +578,16 @@ public class SelectGenerator : MonoBehaviour
         }
         else if (sbN == 3)
         {
-        this.selectcheckMark_G.SetActive(true);
+            this.selectcheckMark_G.SetActive(true);
             this.backimage_G.SetActive(true);
         }
         else if (sbN == 4)
         {
-        this.selectcheckMark_M.SetActive(true);
+            this.selectcheckMark_M.SetActive(true);
             this.backimage_M.SetActive(true);
         }
         PlayerPrefs.SetInt(PlayerScoreDirector.SelectB_key, PlayerScoreDirector.selectbackNum);
         PlayerPrefs.Save();
     }
-    
+
 }
