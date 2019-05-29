@@ -1036,7 +1036,6 @@ public class QuestionDirector : MonoBehaviour
                 abt3_4 = "意匠権";
 
             }
-            houseRule();
         }
         catch (IndexOutOfRangeException) {
         }
@@ -1165,24 +1164,4 @@ public class QuestionDirector : MonoBehaviour
             questionText.fontSize = 105;
         }
     }
-
-
-    public void houseRule()
-    {
-        var generator = new TextGenerator();
-        var warps = ",.[]{}()?!，．「」｛｝（）？！";
-        generator.Populate(questionText.text, questionText.GetGenerationSettings(questionText.GetComponent<RectTransform>().sizeDelta));
-        var lines = generator.lines;
-
-        for (var i = 1; i < lines.Count; ++i){
-            if (warps.Contains(questionText.text[lines[i].startCharIdx]))
-            {
-                questionText.text = questionText.text.Insert(lines[i].startCharIdx - 1, System.Environment.NewLine);
-                break;
-            }
-        }
-    }
-
-
-
 }
