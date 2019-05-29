@@ -3,8 +3,9 @@ using System.Collections;
 using UnityEngine.UI;
 using System;
 
-public class CanvasController : MonoBehaviour {
-    
+public class CanvasController : MonoBehaviour
+{
+
     public Text questionB_Text1;
     public Text questionB_Text2;
     public Text questionB_Text3;
@@ -93,8 +94,8 @@ public class CanvasController : MonoBehaviour {
         qd.barRestart();
         questiontextReset();
     }
-    
-    void Update ()
+
+    void Update()
     {
         if (a == 0 && a_1 == 1 && a_2 == 1 && a_3 == 1 && checkMode == 0)
         {
@@ -111,7 +112,7 @@ public class CanvasController : MonoBehaviour {
             QuestionDirector.answer3 = answerC;
         }
         qd.answer1 = selectedTextC + "［1］" + "</color>";
-        questionB_Text1.text = "<color=#7fff00>" + "［1］" + "</color>";
+        questionB_Text1.text = selectedTextC + "［1］" + "</color>";
         panelCalling(1);
         a = 1;
         if (a_1 == 1)
@@ -133,8 +134,8 @@ public class CanvasController : MonoBehaviour {
             qd.answer1 = answerA;
             QuestionDirector.answer3 = answerC;
         }
-        QuestionDirector.answer2 = "<color=#7fff00>" + "［2］" + "</color>";
-        questionB_Text2.text = "<color=#7fff00>" + "［2］" + "</color>";
+        QuestionDirector.answer2 = selectedTextC + "［2］" + "</color>";
+        questionB_Text2.text = selectedTextC + "［2］" + "</color>";
         panelCalling(2);
         a = 1;
         if (a_2 == 1)
@@ -156,8 +157,8 @@ public class CanvasController : MonoBehaviour {
             qd.answer1 = answerA;
             QuestionDirector.answer2 = answerB;
         }
-        QuestionDirector.answer3 = "<color=#7fff00>" + "［3］" + "</color>";
-        questionB_Text3.text = "<color=#7fff00>" + "［3］" + "</color>";
+        QuestionDirector.answer3 = selectedTextC + "［3］" + "</color>";
+        questionB_Text3.text = selectedTextC  + "［3］" + "</color>";
         panelCalling(3);
         a = 1;
         if (a_3 == 1)
@@ -243,31 +244,37 @@ public class CanvasController : MonoBehaviour {
     public void checkButtonPush()
     {
         //全部正解の場合
-            if (isAnswer1 == true && isAnswer2 == true && isAnswer3 == true)
+        if (isAnswer1 == true && isAnswer2 == true && isAnswer3 == true)
         {
             studyA.goodChoice();
 
             PlayerScoreDirector.numOfAnswer += 1.0f;
             goodImage.GetComponent<Image>().enabled = true;
-                    checkMode = 1;
-            
-            } else if (isAnswer1 == false || isAnswer2 == false || isAnswer3 == false)//1つでもはずれがあった場合
-            {
-                studyA.badChoice();
+            checkMode = 1;
 
-                badImage.GetComponent<Image>().enabled = true;
-                    checkMode = 2;
-            }
+        }
+        else if (isAnswer1 == false || isAnswer2 == false || isAnswer3 == false)//1つでもはずれがあった場合
+        {
+            studyA.badChoice();
+
+            badImage.GetComponent<Image>().enabled = true;
+            checkMode = 2;
+        }
         lastcheck();
     }
-    public void lastcheck(){
+    public void lastcheck()
+    {
         panelCalling(5);
-        if (isCheck == false){
+        if (isCheck == false)
+        {
             if (checkMode == 1)
             {//正解の時  
-                if (CanvasController.qNum == PlayerScoreDirector.numOfQuestion){
+                if (CanvasController.qNum == PlayerScoreDirector.numOfQuestion)
+                {
                     nextButton_T.text = "タップ！";
-                }else {
+                }
+                else
+                {
                     nextButton_T.text = "次の問題へ";
                 }
                 isCheck = true;
@@ -281,17 +288,20 @@ public class CanvasController : MonoBehaviour {
             {
                 badImage.GetComponent<Image>().enabled = false;
                 if (isAnswer1 == false)
-                    {
-                        qd.answer1 = "<color=red>" + qd.abt1_1 + "</color>";
-                    }
-                    if (isAnswer2 == false)
-                    {
-                        QuestionDirector.answer2 = "<color=red>" + QuestionDirector.abt2_1 + "</color>";
-                    }
-                    if (isAnswer3 == false)
-                    {
-                        QuestionDirector.answer3 = "<color=red>" + QuestionDirector.abt3_1 + "</color>";
-                    }
+                {
+                    qd.answer1 = "<color=red>" + qd.abt1_1 + "</color>";
+                }
+
+                if (isAnswer2 == false)
+                {
+                    QuestionDirector.answer2 = "<color=red>" + QuestionDirector.abt2_1 + "</color>";
+                }
+
+                if (isAnswer3 == false)
+                {
+                    QuestionDirector.answer3 = "<color=red>" + QuestionDirector.abt3_1 + "</color>";
+                }
+
                 qd.qnumCheck();
                 isCheck = true;
                 isMiss = false;
@@ -299,21 +309,26 @@ public class CanvasController : MonoBehaviour {
                 {
                     nextButton_T.text = "タップ！";
                 }
-                else { 
+                else
+                {
                     nextButton_T.text = "次の問題へ";
                 }
             }
         }
-        else { 
-            if (CanvasController.qNum == PlayerScoreDirector.numOfQuestion + 1 || PlayerScoreDirector.numOfs_Mode == 7 && CanvasController.isMiss == false) {
-                
-            } else{ 
-                    studyA.nextbuttonPush();
+        else
+        {
+            if (CanvasController.qNum == PlayerScoreDirector.numOfQuestion + 1 || PlayerScoreDirector.numOfs_Mode == 7 && CanvasController.isMiss == false)
+            {
+
+            }
+            else
+            {
+                studyA.nextbuttonPush();
             }
             goodImage.GetComponent<Image>().enabled = false;
             nextQuestion();
         }
-   }
+    }
     public void questionPass()//パスを選択した場合
     {
         //回答を赤字表示，または，答えの表示
@@ -413,11 +428,13 @@ public class CanvasController : MonoBehaviour {
         qd.qnumCheck();
         panelCalling(0);
     }
-    public void changeGtext() {
-        if(a_1 == 1 && a_2==0 && a_3 == 0)
+    public void changeGtext()
+    {
+        if (a_1 == 1 && a_2 == 0 && a_3 == 0)
         {
             guideText.text = "［2］,［3］を\nタップしてください";
-        } else if (a_1 == 1 && a_2 == 1 && a_3 == 0)
+        }
+        else if (a_1 == 1 && a_2 == 1 && a_3 == 0)
         {
             guideText.text = "［3］を\nタップしてください";
         }
@@ -461,7 +478,8 @@ public class CanvasController : MonoBehaviour {
             changeGtext();
             guidePanel.SetActive(true);
 
-        }else if(modeNum == 1)
+        }
+        else if (modeNum == 1)
         {
             answerPanel1.SetActive(true);
         }
