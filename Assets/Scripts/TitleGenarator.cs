@@ -9,12 +9,16 @@ public class TitleGenarator : MonoBehaviour {
 
     public static bool isStart;
 
+    public GameObject LoadPanel;
+    private AsyncOperation async;
+
     private int count;
     public AudioController titleA;
 	void Start()
     {
         count = 0;
         isStart = false;
+        LoadPanel.SetActive(false);
     }
 
 	void Update () {
@@ -24,8 +28,11 @@ public class TitleGenarator : MonoBehaviour {
         if (Input.GetMouseButtonDown(0) && isStart == true)
         {
             titleA.answerbuttonPush();
-            SceneManager.LoadScene("SelectScene");
+            //SceneManager.LoadScene("SelectScene");
+            LoadNextScene();
         }
+
+
         if (Input.GetKey(KeyCode.Home) || Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Menu))
         {
             Application.Quit();
@@ -43,6 +50,22 @@ public class TitleGenarator : MonoBehaviour {
             {
                 titleGuide.GetComponent<Text>().enabled = false;
             }
+        }
+    }
+
+    private void LoadNextScene()
+    {
+        LoadPanel.SetActive(true);
+        StartCoroutine(LoadScene());
+    }
+
+    IEnumerator LoadScene()
+    {
+        async = SceneManager.LoadSceneAsync("SelectScene");
+
+        while (!async.isDone)
+        {
+             yield return null;
         }
     }
 }
