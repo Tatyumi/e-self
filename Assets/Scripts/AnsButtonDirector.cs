@@ -17,7 +17,6 @@ public class AnsButtonDirector : MonoBehaviour
     private Vector3 ruPos;
     private Vector3 rdPos;
 
-
     public GameObject answerButton1_1;
     public GameObject answerButton1_2;
     public GameObject answerButton1_3;
@@ -45,9 +44,6 @@ public class AnsButtonDirector : MonoBehaviour
         Debug.Log(rdPos);
         */
     }
-
-
-
 
     public void shuffleButton()
     {
