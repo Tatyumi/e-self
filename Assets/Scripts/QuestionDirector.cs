@@ -50,7 +50,8 @@ public class QuestionDirector : MonoBehaviour
     public GameObject studyBgm;
     public GameObject endScreen;
     public GameObject passButton;
-    //GameObject pSdobj;
+
+    public GameObject ScrollBar;
 
     private int qCount;
     int endNum;
@@ -77,13 +78,13 @@ public class QuestionDirector : MonoBehaviour
         qCount = 0;
         endScreen.gameObject.SetActive(false);
         fontCheck();
+        ScrollBar.SetActive(true);
     }
 
     public void qnumCheck()
     {
-        
-
-        if (CanvasController.qNum == PlayerScoreDirector.numOfQuestion + 1 || PlayerScoreDirector.numOfs_Mode == 7 && CanvasController.isMiss == false) { 
+        if (CanvasController.qNum == PlayerScoreDirector.numOfQuestion + 1 || PlayerScoreDirector.numOfs_Mode == 7 && CanvasController.isMiss == false)
+        {
             gameEnd();
         }
 
