@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine.UI;
 using System;
-using System.Linq;
 
 public class QuestionDirector : MonoBehaviour
 {
@@ -39,8 +38,6 @@ public class QuestionDirector : MonoBehaviour
     public static string abt3_3;
     public static string abt3_4;
     static string category;
-    
-
 
     public int[] number;
     bool isR;
@@ -94,16 +91,19 @@ public class QuestionDirector : MonoBehaviour
             {
                 normalSelect(ref number);
             }
-            else {
+            else
+            {
                 shuffleNum(ref number);
-                if (PlayerScoreDirector.numOfs_Mode == 7) {
-                        this.passButton.SetActive(false);
-                    }
+                if (PlayerScoreDirector.numOfs_Mode == 7)
+                {
+                    this.passButton.SetActive(false);
+                }
             }
             isR = false;
         }
 
-        try { 
+        try
+        {
             if (number[CanvasController.qNum - 1] == 1)
             {
 
@@ -130,8 +130,7 @@ public class QuestionDirector : MonoBehaviour
 
 
             }
-            //else if (CanvasController.qNum == 2)
-            else if (number[CanvasController.qNum -1] == 2)
+            else if (number[CanvasController.qNum - 1] == 2)
             {
                 category = "情報の特徴";
 
@@ -153,8 +152,7 @@ public class QuestionDirector : MonoBehaviour
                 abt3_4 = "循環性";
 
             }
-            // else if (CanvasController.qNum == 3)
-            else if (number[CanvasController.qNum-1] == 3)
+            else if (number[CanvasController.qNum - 1] == 3)
             {
                 category = "電子商取引";
 
@@ -176,8 +174,7 @@ public class QuestionDirector : MonoBehaviour
                 abt3_4 = "CtoB";
 
             }
-            //else if (CanvasController.qNum == 4)
-            else if (number[CanvasController.qNum-1] == 4)
+            else if (number[CanvasController.qNum - 1] == 4)
             {
                 category = "ネチケット(環境)";
 
@@ -199,8 +196,7 @@ public class QuestionDirector : MonoBehaviour
                 abt3_4 = "文字ぼけ";
 
             }
-            //else if (CanvasController.qNum == 5)
-            else if (number[CanvasController.qNum-1] == 5)
+            else if (number[CanvasController.qNum - 1] == 5)
             {
                 category = "身体への影響";
 
@@ -248,7 +244,7 @@ public class QuestionDirector : MonoBehaviour
             {
                 category = "通信の仕組み(通信構成)";
 
-                questionText.text = "　コンピュータ同士の通信に関する取り決めを通信" + answer1 + "といい，これは複数のネットワークを繋ぎ合わせ相互を通信可能とする" + answer2 + "と，"+ answer2 + "を基盤に利用される" + answer3 + "を組み合わせたものをいう．";
+                questionText.text = "　コンピュータ同士の通信に関する取り決めを通信" + answer1 + "といい，これは複数のネットワークを繋ぎ合わせ相互を通信可能とする" + answer2 + "と，" + answer2 + "を基盤に利用される" + answer3 + "を組み合わせたものをいう．";
 
                 abt1_1 = "プロトコル";//正解
                 abt1_2 = "プロバイダ";
@@ -644,7 +640,7 @@ public class QuestionDirector : MonoBehaviour
             {
                 category = "サイバー犯罪(不正操作)";
 
-                questionText.text = "　第三者による操作，データの改ざんなどの不正利用行為，つまり" + answer1 + "から守るために" + answer2 + "を十分に確保する必要がある．また，" + answer1 + "する人を"+ answer3 + "と呼ぶ．";
+                questionText.text = "　第三者による操作，データの改ざんなどの不正利用行為，つまり" + answer1 + "から守るために" + answer2 + "を十分に確保する必要がある．また，" + answer1 + "する人を" + answer3 + "と呼ぶ．";
 
                 abt1_1 = "クラッキング";//正解
                 abt1_2 = "ハッキング";
@@ -1037,14 +1033,13 @@ public class QuestionDirector : MonoBehaviour
                 abt3_4 = "意匠権";
 
             }
+
         }
-        catch (IndexOutOfRangeException) {
+        catch (IndexOutOfRangeException)
+        {
         }
 
         q_numText.text = CanvasController.qNum + "/" + (int)PlayerScoreDirector.numOfQuestion;
-        //q_numText.text = CanvasController.qNum + "/"+EndNum;
-        //progressBar.fillAmount += 0.1f;
-        //handle.transform.localPosition += new Vector3(0.1f, 0, 0);
         answerB_Text1_1.text = abt1_1;
         answerB_Text1_2.text = abt1_2;
         answerB_Text1_3.text = abt1_3;
@@ -1082,10 +1077,11 @@ public class QuestionDirector : MonoBehaviour
     public void normalSelect(ref int[] namN)
     {
         int a = 0;
-        if(PlayerScoreDirector.numOfs_Mode == 1)
+        if (PlayerScoreDirector.numOfs_Mode == 1)
         {
             a += 1;
-        }else if (PlayerScoreDirector.numOfs_Mode == 2)
+        }
+        else if (PlayerScoreDirector.numOfs_Mode == 2)
         {
             a += 22;
         }
@@ -1098,11 +1094,12 @@ public class QuestionDirector : MonoBehaviour
             namN[i] = i + a;//iに足す値は，問題のカテゴリーによって変わる
         }
     }
+
     /// <summary>
     /// 出題形式をランダムにする関数
     /// </summary>
     /// <param name="nam"></param>
-    public void shuffleNum(ref int[]nam)
+    public void shuffleNum(ref int[] nam)
     {
         int a = 0;
 
@@ -1130,7 +1127,7 @@ public class QuestionDirector : MonoBehaviour
         int n = nam.Length;
         int temp;
 
-        while ( n > 1 )
+        while (n > 1)
         {
             n--;
             int k = UnityEngine.Random.Range(1, n);
@@ -1144,6 +1141,7 @@ public class QuestionDirector : MonoBehaviour
             Debug.Log("nam[" + i + "] = " + nam[i]);
         }
     }
+
     /// <summary>
     /// 既定の問題数と現在の出題数の比較，それによるゲームエンド
     /// </summary>
@@ -1154,9 +1152,12 @@ public class QuestionDirector : MonoBehaviour
         studyBgm.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// フォントサイズが「標準」か「大」かチェックする
+    /// </summary>
     public void fontCheck()
     {
-        if(PlayerScoreDirector.q_fontNum == 1)
+        if (PlayerScoreDirector.q_fontNum == 1)
         {
             questionText.fontSize = 85;
         }
@@ -1165,4 +1166,5 @@ public class QuestionDirector : MonoBehaviour
             questionText.fontSize = 105;
         }
     }
+
 }
