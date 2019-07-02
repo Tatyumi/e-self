@@ -217,7 +217,7 @@ public class DictionaryController : MonoBehaviour {
         this.wordButtonName64.text = "ハッカー";
         this.wordButtonName65.text = "ハッキング";
         this.wordButtonName66.text = "ハードウェア";
-        this.wordButtonName67.text = "へいぶん";
+        this.wordButtonName67.text = "平文";
         this.wordButtonName68.text = "復号";
         this.wordButtonName69.text = "複製権";
         this.wordButtonName70.text = "複製性";
